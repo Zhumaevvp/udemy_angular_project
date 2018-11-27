@@ -9,7 +9,8 @@ import { Recipe } from '../recipe.model';
 })
 export class RecipeListComponent implements OnInit {
   recipes: Recipe[] = [
-    new Recipe('Test recipe', 'its just a test recipe', 'http://grandkulinar.ru/uploads/posts/2012-02/1329394353_zharenyy-v-kakao-steyk-nyu-york-s-sousom-iz-viski.jpg')
+    new Recipe('Test recipe', 'its just a test recipe', 'https://upload.wikimedia.org/wikipedia/commons/1/15/Recipe_logo.jpeg'),
+    new Recipe('Test recipe', 'its just a test recipe', 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Recipe_logo.jpeg/600px-Recipe_logo.jpeg')
   ];
   constructor() { }
 
