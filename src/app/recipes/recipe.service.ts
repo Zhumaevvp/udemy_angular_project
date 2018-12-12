@@ -1,17 +1,38 @@
-// tslint:disable-next-line:quotemark
-import { Recipe } from "./recipe.model";
-import { EventEmitter } from '@angular/core';
 
+import { Recipe } from './recipe.model';
+import { EventEmitter, Injectable } from '@angular/core';
+import { Ingredient } from '../shared/ingredient.model';
+import { ShoppingListService } from '../shopping-list/shopping-list.service';
+
+@Injectable()
 export class RecipeService {
     recipeSelected = new EventEmitter<Recipe>();
 
     private recipes: Recipe[] = [
-        new Recipe('Test recipe', 'its just a test recipe', 'https://upload.wikimedia.org/wikipedia/commons/1/15/Recipe_logo.jpeg'),
-        // tslint:disable-next-line:max-line-length
-        new Recipe('Second Test recipe', 'its just a test recipe', 'https://st3.depositphotos.com/4216129/12650/v/950/depositphotos_126503076-stock-illustration-best-recipe-beer-logo-design.jpg')
+        new Recipe(
+            'Plov', 
+            'Uzbekistan national meal', 
+            'https://upload.wikimedia.org/wikipedia/commons/1/15/Recipe_logo.jpeg',
+            [
+                new Ingredient('Rice', 5),
+                new Ingredient('Meat', 1)
+            ]),
+        new Recipe(
+            'Scirt-steak', 
+            'Fat meat slice', 
+            'https://st3.depositphotos.com/4216129/12650/v/950/depositphotos_126503076-stock-illustration-best-recipe-beer-logo-design.jpg',
+            [
+                new Ingredient('Beef', 1),
+                new Ingredient('SPG', 5)
+            ])
       ];
+
+    constructor(private slService: ShoppingListService) {}
 
     getRecipes() {
         return this.recipes.slice();
+    }
+    addIngredientsToShoppingList(ingredients: Ingredient[]) {
+        this.slService.addIngredients(ingredients);
     }
 }
