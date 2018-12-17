@@ -10,16 +10,16 @@ export class RecipeService {
 
     private recipes: Recipe[] = [
         new Recipe(
-            'Plov', 
-            'Uzbekistan national meal', 
+            'Plov',
+            'Uzbekistan national meal',
             'https://upload.wikimedia.org/wikipedia/commons/1/15/Recipe_logo.jpeg',
             [
                 new Ingredient('Rice', 5),
                 new Ingredient('Meat', 1)
             ]),
         new Recipe(
-            'Scirt-steak', 
-            'Fat meat slice', 
+            'Scirt-steak',
+            'Fat meat slice',
             'https://st3.depositphotos.com/4216129/12650/v/950/depositphotos_126503076-stock-illustration-best-recipe-beer-logo-design.jpg',
             [
                 new Ingredient('Beef', 1),
@@ -32,6 +32,11 @@ export class RecipeService {
     getRecipes() {
         return this.recipes.slice();
     }
+
+    getRecipe(index: number) {
+        return this.recipes[index];
+    }
+
     addIngredientsToShoppingList(ingredients: Ingredient[]) {
         this.slService.addIngredients(ingredients);
     }
