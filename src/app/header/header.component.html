@@ -2,9 +2,15 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <a routerLink="/" class="navbar-brand">Recipe Book</a>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-main">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
         </div>
 
-        <div class="collapse navbar-collapse">
+        <div class="collapse navbar-collapse" id="navbar-main">
             <ul class="nav navbar-nav">
                 <li routerLinkActive="active"><a routerLink="/recipes">Resipe</a></li>
                 <li routerLinkActive="active"><a routerLink="/shopping-list">Shoping List</a></li>
@@ -13,8 +19,8 @@
                 <li class="dropdown" appDropdown>
                     <a style="cursor: pointer;" class="dropdown-toggle" role="button">Manage <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a style="cursor: pointer;">Save Data</a></li>
-                        <li><a style="cursor: pointer;">Fetch Data</a></li>
+                        <li><a style="cursor: pointer;" (click)="onSaveData()">Save Data</a></li>
+                        <li><a style="cursor: pointer;" (click)="onFetchData()">Fetch Data</a></li>
                     </ul>
                 </li>
             </ul>
