@@ -11,17 +11,17 @@ export class RecipeService {
 
     private recipes: Recipe[] = [
         new Recipe(
-            'Plov',
+            'Плов',
             'Uzbekistan national meal',
-            'https://upload.wikimedia.org/wikipedia/commons/1/15/Recipe_logo.jpeg',
+            'https://s2.eda.ru/StaticContent/Photos/120131082439/160124115932/p_O.jpg',
             [
-                new Ingredient('Rice', 5),
-                new Ingredient('Meat', 1)
+                new Ingredient('Рис', 5),
+                new Ingredient('Мясо', 1)
             ]),
         new Recipe(
             'Scirt-steak',
             'Fat meat slice',
-            'https://st3.depositphotos.com/4216129/12650/v/950/depositphotos_126503076-stock-illustration-best-recipe-beer-logo-design.jpg',
+            'http://gvozdipub.ru/upload/iblock/df9/df9476badb77faedfe174bc666489959.jpg',
             [
                 new Ingredient('Beef', 1),
                 new Ingredient('SPG', 5)
