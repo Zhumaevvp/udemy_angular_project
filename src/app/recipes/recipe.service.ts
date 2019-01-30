@@ -12,7 +12,7 @@ export class RecipeService {
     private recipes: Recipe[] = [
         new Recipe(
             'Плов',
-            'Uzbekistan national meal',
+            'Uzbekistan national MEAL',
             'https://s2.eda.ru/StaticContent/Photos/120131082439/160124115932/p_O.jpg',
             [
                 new Ingredient('Рис', 5),
