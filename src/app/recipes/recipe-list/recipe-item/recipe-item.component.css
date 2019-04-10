@@ -1,0 +1,10 @@
+.list-group-item {
+  margin-bottom: 5px;
+}
+
+.list-group-item:hover {
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  -webkit-transform: scale(1.01);
+  -moz-transform: scale(1.01);
+  -o-transform: scale(1.01);
+}
