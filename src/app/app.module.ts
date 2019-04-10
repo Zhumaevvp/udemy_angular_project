@@ -50,4 +50,5 @@ import { AuthGuard } from './auth/auth-guard.service';
   providers: [ShoppingListService, RecipeService, DataStorageService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
