@@ -22,11 +22,15 @@
                 </ng-template>
                 <li><a style="cursor: pointer;" (click)="onLogout()" *ngIf="authService.isAuthenticated()">Logout</a></li>
                 <li class="dropdown" appDropdown *ngIf="authService.isAuthenticated()">
-                    <a style="cursor: pointer;" class="dropdown-toggle" role="button">Manage <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a style="cursor: pointer;" (click)="onSaveData()">Save Data</a></li>
-                        <li><a style="cursor: pointer;" (click)="onFetchData()">Fetch Data</a></li>
-                    </ul>
+                  <a style="cursor: pointer;" class="dropdown-toggle" role="button">Manage <span class="caret"></span></a>
+                  <ul *ngIf="myRoute !== '/shopping-list'" class="dropdown-menu">
+                      <li><a style="cursor: pointer;" (click)="onSaveRecipies()">Save Recipies</a></li>
+                      <li><a style="cursor: pointer;" (click)="onFetchRecipies()">Fetch Recipies</a></li>
+                  </ul>
+                  <ul *ngIf="myRoute === '/shopping-list'" class="dropdown-menu">
+                    <li><a style="cursor: pointer;" (click)="onSaveIngredients()">Save Ingredients</a></li>
+                    <li><a style="cursor: pointer;" (click)="onFetchIngredients()">Fetch Ingredients</a></li>
+                  </ul>
                 </li>
             </ul>
         </div>

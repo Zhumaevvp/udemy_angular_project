@@ -9,6 +9,11 @@ export class ShoppingListService {
     new Ingredient('Tomatoes', 10)
   ];
 
+  setIngredients(ingredients: Ingredient[]) {
+    this.ingredients = ingredients;
+    this.ingredientsChanged.next(this.ingredients.slice());
+  }
+
   getIngredients() {
     return this.ingredients.slice();
   }

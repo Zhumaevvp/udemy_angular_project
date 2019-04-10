@@ -1,19 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, DoCheck, OnChanges, OnInit } from '@angular/core';
 import { DataStorageService } from '../shared/data-storage.service';
 import { Response } from '@angular/http';
 import { AuthService } from '../auth/auth.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html'
 })
-export class HeaderComponent {
+export class HeaderComponent implements DoCheck {
+  public myRoute = '';
 
   constructor(private dataStorageService: DataStorageService,
-              private authService: AuthService) {
+              private authService: AuthService,
+              public router: Router) {
   }
 
-  onSaveData() {
+  public ngDoCheck() {
+    this.myRoute = JSON.stringify(this.router.url).replace(/['"«»]/g, '');
+  }
+
+  public onSaveRecipies() {
     this.dataStorageService.storeRecipes().subscribe(
       (response: Response) => {
         console.log(response);
@@ -21,11 +28,23 @@ export class HeaderComponent {
     );
   }
 
-  onFetchData() {
+  public onFetchRecipies() {
     this.dataStorageService.getRecipes();
   }
 
-  onLogout() {
+  public onSaveIngredients() {
+    this.dataStorageService.storeIngredients().subscribe(
+      (response: Response) => {
+        console.log(response);
+      }
+    );
+  }
+
+  public onFetchIngredients() {
+    this.dataStorageService.getIngredients();
+  }
+
+  public onLogout() {
     this.authService.logout();
   }
 
