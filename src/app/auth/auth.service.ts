@@ -11,10 +11,12 @@ export class AuthService {
               @Inject(LOCAL_STORAGE) private storage: StorageService) {
   }
 
+
+
   signupUser(email: string, password: string) {
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .catch(
-        error => console.log(error)
+        error => window.alert(error.message)
       );
   }
 
@@ -24,8 +26,10 @@ export class AuthService {
         response => {
           this.router.navigate(['/']);
           firebase.auth().currentUser.getIdToken().then(
-            (token: string) => this.token = token
-          );
+            (token: string) => {
+              this.token = token;
+              this.storage.set('user', this.token);
+            });
         }
       )
       .catch(
@@ -36,17 +40,25 @@ export class AuthService {
   logout() {
     firebase.auth().signOut();
     this.token = null;
+    this.storage.remove('user');
     this.router.navigate(['/']);
   }
 
   getToken() {
-    firebase.auth().currentUser.getIdToken().then(
-      (token: string) => this.token = token
-    );
-    return this.token;
-  }
+    if (this.storage.get('user')) {
+      return this.storage.get('user');
+    } else {
+      firebase.auth().currentUser.getIdToken().then(
+        (token: string) => this.token = token
+      );
+      this.storage.set('user', this.token);
+      return this.token;
+    }}
 
   isAuthenticated() {
-    return this.token != null;
-  }
+    if (this.storage.get('user')) {
+      return this.storage.get('user') != null;
+    } else {
+      return this.token != null;
+    }}
 }
