@@ -25,6 +25,8 @@ const appRoutes: Routes = [
   { path: 'signin', component: SigninComponent }
 ];
 
+// TODO при обновлении страницы необходимо перенаправление на /recipes
+
 @NgModule({
   imports: [RouterModule.forRoot(appRoutes)],
   exports: [RouterModule]

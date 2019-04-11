@@ -1,8 +1,8 @@
-import { Component, DoCheck, OnChanges, OnInit } from '@angular/core';
+import { Component, DoCheck } from '@angular/core';
 import { DataStorageService } from '../shared/data-storage.service';
 import { Response } from '@angular/http';
 import { AuthService } from '../auth/auth.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import {  Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',

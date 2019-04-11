@@ -12,7 +12,6 @@ export class AuthService {
   }
 
 
-
   signupUser(email: string, password: string) {
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .catch(
@@ -53,12 +52,14 @@ export class AuthService {
       );
       this.storage.set('user', this.token);
       return this.token;
-    }}
+    }
+  }
 
   isAuthenticated() {
     if (this.storage.get('user')) {
       return this.storage.get('user') != null;
     } else {
       return this.token != null;
-    }}
+    }
+  }
 }
