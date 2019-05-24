@@ -13,6 +13,9 @@ import { AuthService } from '../auth/auth.service';
 export class ShoppingListComponent implements OnInit, OnDestroy {
   ingredients: Ingredient[];
   private subcription: Subscription;
+  public scroll_config: any = {
+    wheelPropagation: false
+  };
 
   constructor(private slService: ShoppingListService,
               private dataStorageService: DataStorageService,
