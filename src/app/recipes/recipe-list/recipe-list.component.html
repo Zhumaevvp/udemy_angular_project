@@ -5,10 +5,10 @@
 </div>
 <hr>
 <div class="row">
-  <div class="col-xs-12">
+  <perfect-scrollbar style="max-width: 600px; max-height: 70vh;" [config]="scroll_config" class="col-xs-12">
     <app-recipe-item
     *ngFor="let recipeEL of recipes; let i = index"
     [recipe]="recipeEL"
     [index]="i"></app-recipe-item>
-  </div>
+  </perfect-scrollbar>
 </div>
