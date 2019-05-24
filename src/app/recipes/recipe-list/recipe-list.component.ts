@@ -4,6 +4,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Recipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
 import { Subscription } from 'rxjs';
+import { AuthService } from '../../auth/auth.service';
+import { DataStorageService } from '../../shared/data-storage.service';
 
 
 @Component({
@@ -17,10 +19,17 @@ export class RecipeListComponent implements OnInit, OnDestroy {
 
   constructor(private recipeService: RecipeService,
               private router: Router,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private authService: AuthService,
+              private dataStorageService: DataStorageService) {
   }
 
   ngOnInit() {
+    if (this.authService.isAuthenticated()) {
+      this.dataStorageService.getRecipes();
+    } else {
+      return;
+    }
     this.subscription = this.recipeService.recipesChanged.subscribe(
       (recipes: Recipe[]) => {
         this.recipes = recipes;
@@ -34,6 +43,6 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.subscription && this.subscription.unsubscribe();
   }
 }

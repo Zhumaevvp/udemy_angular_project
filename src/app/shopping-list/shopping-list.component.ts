@@ -2,6 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Ingredient } from '../shared/ingredient.model';
 import { ShoppingListService } from './shopping-list.service';
 import { Subscription } from 'rxjs';
+import { DataStorageService } from '../shared/data-storage.service';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-shopping-list',
@@ -12,10 +14,17 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   ingredients: Ingredient[];
   private subcription: Subscription;
 
-  constructor(private slService: ShoppingListService) {
+  constructor(private slService: ShoppingListService,
+              private dataStorageService: DataStorageService,
+              private authService: AuthService) {
   }
 
   ngOnInit() {
+    if (this.authService.isAuthenticated()) {
+      this.dataStorageService.getIngredients();
+    } else {
+      return;
+    }
     this.ingredients = this.slService.getIngredients();
     this.subcription = this.slService.ingredientsChanged.subscribe(
       (ingredients: Ingredient[]) => {
@@ -29,7 +38,7 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subcription.unsubscribe();
+    this.subcription && this.subcription.unsubscribe();
   }
 }
 
