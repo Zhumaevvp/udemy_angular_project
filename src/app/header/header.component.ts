@@ -1,8 +1,7 @@
 import { Component, DoCheck } from '@angular/core';
 import { DataStorageService } from '../shared/data-storage.service';
-import { Response } from '@angular/http';
 import { AuthService } from '../auth/auth.service';
-import {  Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -22,7 +21,7 @@ export class HeaderComponent implements DoCheck {
 
   public onSaveRecipies() {
     this.dataStorageService.storeRecipes().subscribe(
-      (response: Response) => {
+      (response) => {
         console.log(response);
       }
     );
@@ -34,7 +33,7 @@ export class HeaderComponent implements DoCheck {
 
   public onSaveIngredients() {
     this.dataStorageService.storeIngredients().subscribe(
-      (response: Response) => {
+      (response) => {
         console.log(response);
       }
     );

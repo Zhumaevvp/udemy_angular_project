@@ -1,5 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+
 import { RecipeService } from '../recipes/recipe.service';
 import { Recipe } from '../recipes/recipe.model';
 import { map } from 'rxjs/operators';
@@ -11,7 +12,7 @@ import { LOCAL_STORAGE, StorageService } from 'ngx-webstorage-service';
 @Injectable()
 export class DataStorageService {
 
-  constructor(private http: Http,
+  constructor(private http: HttpClient,
               private recipeService: RecipeService,
               private shopListService: ShoppingListService,
               private authService: AuthService,
@@ -39,8 +40,8 @@ export class DataStorageService {
 
     this.http.get('https://udeny-ng-recipebook.firebaseio.com/recipes.json?auth=' + token)
       .pipe(map(
-        (responce: Response) => {
-          const recipes: Recipe[] = responce.json();
+        (responce) => {
+          const recipes: any = responce;
           for (const recipe of recipes) {
             if (!recipe['ingredients']) {
               recipe['ingredients'] = [];
@@ -61,8 +62,8 @@ export class DataStorageService {
 
     this.http.get('https://udeny-ng-recipebook.firebaseio.com/ingredients.json?auth=' + token)
       .pipe(map(
-        (responce: Response) => {
-          const ingredients: Ingredient[] = responce.json();
+        (responce) => {
+          const ingredients: any = responce;
           return ingredients;
         }
       ))
